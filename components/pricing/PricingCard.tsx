@@ -79,7 +79,6 @@ export function PricingCard({ tier, billing, featured }: PricingCardProps) {
           'relative h-full',
           featured && 'border-2 shadow-2xl'
         )}
-        style={featured ? { borderColor: '#7848FE', boxShadow: '0 0 40px rgba(120, 72, 254, 0.3)' } : {}}
       >
       {featured && (
         <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 text-white text-sm font-bold rounded-full shadow-lg" style={{ background: 'linear-gradient(135deg, #7848FE 0%, #9F7BFF 100%)' }}>

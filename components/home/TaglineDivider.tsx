@@ -49,6 +49,7 @@ export function TaglineDivider() {
           style={{
             x: gradientX,
             y: gradientY,
+            background: 'radial-gradient(circle, #9F7BFF 0%, transparent 70%)'
           }}
           className="absolute top-20 right-20 w-96 h-96 rounded-full blur-2xl opacity-20"
           animate={{
@@ -59,13 +60,13 @@ export function TaglineDivider() {
             repeat: Infinity,
             ease: "easeInOut"
           }}
-          style={{ background: 'radial-gradient(circle, #9F7BFF 0%, transparent 70%)' }}
         />
 
         <motion.div
           style={{
             x: useTransform(gradientX, (x) => -x * 0.5),
             y: useTransform(gradientY, (y) => -y * 0.5),
+            background: 'radial-gradient(circle, #7848FE 0%, transparent 70%)'
           }}
           className="absolute bottom-20 left-20 w-96 h-96 rounded-full blur-2xl opacity-20"
           animate={{
@@ -76,7 +77,6 @@ export function TaglineDivider() {
             repeat: Infinity,
             ease: "easeInOut"
           }}
-          style={{ background: 'radial-gradient(circle, #7848FE 0%, transparent 70%)' }}
         />
 
         {/* Floating particles */}
