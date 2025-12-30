@@ -148,7 +148,7 @@ export function Reality({ children }: { children: React.ReactNode }) {
   return (
     <div className="mt-6 p-4 bg-neutral-100 rounded-lg border-l-4 border-neutral-400">
       <p className="text-base italic text-neutral-800">
-        <strong>Reality:</strong> {children}
+        {children}
       </p>
     </div>
   )
