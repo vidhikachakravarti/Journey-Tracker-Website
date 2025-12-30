@@ -76,16 +76,16 @@ function RoleCard({ role, index, isInView }: { role: typeof roles[0], index: num
       </div>
 
       {/* Content */}
-      <div className="relative h-full flex flex-col justify-between p-8">
-        {/* Title - Always Visible */}
+      <div className="relative h-full flex flex-col justify-center items-center p-8">
+        {/* Title - Visible when not hovering */}
         <motion.div
           animate={{
-            y: isHovered ? 0 : '50%',
+            opacity: isHovered ? 0 : 1,
           }}
-          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute top-1/2 left-8 right-8"
+          transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          className="absolute inset-0 flex items-center justify-center"
         >
-          <h3 className="text-2xl font-bold text-white text-center">
+          <h3 className="text-2xl font-bold text-white text-center px-8">
             {role.title}
           </h3>
         </motion.div>
