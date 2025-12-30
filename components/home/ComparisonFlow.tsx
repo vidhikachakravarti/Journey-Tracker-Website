@@ -86,6 +86,7 @@ export function ComparisonFlow() {
             <li>• No task is duplicated</li>
             <li>• No patient is overlooked</li>
           </BulletList>
+          <Impact>Teams move from reacting to executing. With every patient, every day, accounted for.</Impact>
         </ComparisonCard>
       </div>
     </section>
