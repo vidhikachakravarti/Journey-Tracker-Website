@@ -13,10 +13,10 @@ export function Logo({ variant = 'dark', className }: LogoProps) {
       <Image
         src="/lillia-logo.png"
         alt="Lillia"
-        width={120}
-        height={40}
+        width={180}
+        height={60}
         priority
-        className="h-8 w-auto"
+        className="h-12 w-auto"
       />
     </Link>
   )
