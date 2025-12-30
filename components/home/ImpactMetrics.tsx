@@ -8,10 +8,10 @@ import { SectionHeader } from '../ui/SectionHeader'
 const metrics = [
   { stat: '~60–70%', label: 'reduction in manual tracking and follow-ups' },
   { stat: '~40%', label: 'improvement in outcomes' },
-  { label: 'Fewer missed tasks across long-term programs' },
-  { label: 'Clear ownership for every patient, every day' },
-  { label: 'Faster onboarding of new team members' },
-  { label: 'More predictable program execution' },
+  { highlight: 'Fewer missed tasks', description: 'across long-term programs' },
+  { highlight: 'Clear ownership', description: 'for every patient, every day' },
+  { highlight: 'Faster onboarding', description: 'of new team members' },
+  { highlight: 'More predictable', description: 'program execution' },
 ]
 
 export function ImpactMetrics() {
@@ -78,9 +78,20 @@ export function ImpactMetrics() {
                     </div>
                   ) : (
                     <div className="flex items-center justify-center h-full min-h-[120px]">
-                      <div className="text-center">
-                        <div className="text-base font-semibold leading-relaxed" style={{ color: '#3F3B3A' }}>
-                          {metric.label}
+                      <div className="text-center space-y-2">
+                        <div
+                          className="text-2xl font-bold"
+                          style={{
+                            backgroundImage: 'linear-gradient(135deg, #7848FE 0%, #9F7BFF 100%)',
+                            backgroundClip: 'text',
+                            WebkitBackgroundClip: 'text',
+                            WebkitTextFillColor: 'transparent',
+                          }}
+                        >
+                          {metric.highlight}
+                        </div>
+                        <div className="text-base font-medium leading-relaxed" style={{ color: '#3F3B3A' }}>
+                          {metric.description}
                         </div>
                       </div>
                     </div>
