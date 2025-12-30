@@ -69,8 +69,17 @@ const config: Config = {
         'text': '640px',
       },
       boxShadow: {
-        'lift': '0 12px 24px rgba(0, 0, 0, 0.12)',
-        'lift-lg': '0 20px 40px rgba(0, 0, 0, 0.15)',
+        'lift': '0 12px 24px rgba(120, 72, 254, 0.15)',
+        'lift-lg': '0 20px 40px rgba(120, 72, 254, 0.2)',
+        'purple': '0 10px 40px rgba(159, 123, 255, 0.3)',
+        'glow': '0 0 20px rgba(120, 72, 254, 0.4)',
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-purple': 'linear-gradient(135deg, #9F7BFF 0%, #7848FE 100%)',
+        'gradient-lavender': 'linear-gradient(135deg, #EADEFC 0%, #D3B9F9 50%, #9F7BFF 100%)',
+        'gradient-deep': 'linear-gradient(135deg, #7848FE 0%, #280470 100%)',
+        'gradient-soft': 'linear-gradient(135deg, #F9EAE4 0%, #EADEFC 100%)',
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-out',

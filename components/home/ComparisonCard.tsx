@@ -38,13 +38,16 @@ export function ComparisonCard({
       >
         <div
           className={cn(
-            'rounded-lg overflow-hidden border shadow-2xl aspect-video bg-neutral-100 flex items-center justify-center',
+            'rounded-lg overflow-hidden border shadow-2xl aspect-video flex items-center justify-center',
             theme === 'solution'
-              ? 'border-accent-200 shadow-accent-100/50'
-              : 'border-neutral-200'
+              ? 'border-primary-400/50 shadow-purple bg-gradient-to-br from-primary-50 to-primary-100'
+              : 'border-neutral-200 bg-neutral-100'
           )}
         >
-          <div className="text-neutral-400 text-sm">[{image}]</div>
+          <div className={cn(
+            "text-sm",
+            theme === 'solution' ? 'text-primary-400' : 'text-neutral-400'
+          )}>[{image}]</div>
         </div>
       </motion.div>
 
@@ -72,7 +75,7 @@ export function Headline({
     <h3
       className={cn(
         'text-3xl font-semibold tracking-tight',
-        highlight ? 'text-accent-600' : 'text-neutral-900'
+        highlight ? 'bg-gradient-to-r from-primary-600 to-primary-500 bg-clip-text text-transparent' : 'text-neutral-900'
       )}
     >
       {children}
@@ -108,8 +111,8 @@ export function Reality({ children }: { children: React.ReactNode }) {
 
 export function Impact({ children }: { children: React.ReactNode }) {
   return (
-    <div className="mt-6 p-4 bg-accent-50 rounded-lg border-l-4 border-accent-500">
-      <p className="text-base font-medium text-accent-900">{children}</p>
+    <div className="mt-6 p-4 bg-gradient-to-r from-primary-50 to-primary-100 rounded-lg border-l-4 border-primary-500 shadow-sm">
+      <p className="text-base font-semibold text-primary-700">{children}</p>
     </div>
   )
 }

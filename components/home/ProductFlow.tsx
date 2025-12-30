@@ -126,7 +126,7 @@ function FlowStep({ step }: { step: typeof steps[0] }) {
         animate={{ opacity: isInView ? 1 : 0.4 }}
         className="max-w-[560px]"
       >
-        <div className="text-sm font-mono text-accent-400 mb-2">
+        <div className="text-sm font-mono text-primary-300 mb-2 font-semibold">
           STEP {String(step.number).padStart(2, '0')}
         </div>
 
@@ -134,17 +134,17 @@ function FlowStep({ step }: { step: typeof steps[0] }) {
           {step.title}
         </h3>
 
-        <p className="text-lg italic text-neutral-400 mb-6">{step.tagline}</p>
+        <p className="text-lg italic text-primary-200/80 mb-6">{step.tagline}</p>
 
-        <p className="text-base leading-relaxed text-neutral-200 mb-8">
+        <p className="text-base leading-relaxed text-primary-100/90 mb-8">
           {step.description}
         </p>
 
         <div className="space-y-2">
           {step.impact.map((item, i) => (
             <div key={i} className="flex items-start gap-3">
-              <span className="text-accent-400 mt-1">✔</span>
-              <span className="text-neutral-100">{item}</span>
+              <span className="text-primary-400 mt-1">✔</span>
+              <span className="text-primary-50">{item}</span>
             </div>
           ))}
         </div>
@@ -167,17 +167,23 @@ export function ProductFlow() {
   }, [])
 
   return (
-    <section className="relative bg-neutral-900 text-white py-32">
-      <div className="max-w-[1440px] mx-auto px-6">
+    <section className="relative bg-gradient-to-br from-primary-900 via-primary-800 to-neutral-900 text-white py-32 overflow-hidden">
+      {/* Decorative gradient orbs */}
+      <div className="absolute inset-0">
+        <div className="absolute top-20 right-20 w-96 h-96 bg-primary-500/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 left-20 w-96 h-96 bg-primary-400/20 rounded-full blur-3xl" />
+      </div>
+
+      <div className="max-w-[1440px] mx-auto px-6 relative z-10">
         {/* Section intro */}
         <div className="text-center mb-24">
-          <div className="inline-flex items-center px-3 py-1 rounded-full bg-accent-900/50 text-accent-400 text-sm font-medium mb-4">
+          <div className="inline-flex items-center px-3 py-1 rounded-full bg-primary-400/20 border border-primary-400/30 text-primary-200 text-sm font-medium mb-4">
             Complete Platform
           </div>
-          <h2 className="text-5xl font-semibold tracking-tight mb-6">
+          <h2 className="text-5xl font-semibold tracking-tight mb-6 bg-gradient-to-r from-white to-primary-100 bg-clip-text text-transparent">
             From program design to measurable clinical impact
           </h2>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+          <p className="text-xl text-primary-100/90 max-w-3xl mx-auto">
             A single system that takes you from care planning → daily execution
             → patient outcomes → population-level insights.
           </p>
@@ -188,13 +194,14 @@ export function ProductFlow() {
           {/* Sticky Visual */}
           <div className="hidden lg:block">
             <div className="sticky top-32 h-[600px]">
-              <div className="relative w-full h-full rounded-lg border border-white/10 shadow-2xl bg-neutral-800 flex items-center justify-center overflow-hidden">
+              <div className="relative w-full h-full rounded-lg border border-primary-400/30 shadow-glow bg-gradient-to-br from-primary-800/50 to-neutral-900/50 backdrop-blur-sm flex items-center justify-center overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary-500/10 to-transparent" />
                 <motion.div
                   key={activeVisual}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5 }}
-                  className="text-neutral-500 text-sm text-center p-8"
+                  className="text-primary-200 text-sm text-center p-8 relative z-10"
                 >
                   [{activeVisual}]
                 </motion.div>

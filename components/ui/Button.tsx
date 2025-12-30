@@ -28,24 +28,25 @@ export function Button({
 
   const variants = {
     primary: `
-      bg-accent-600 text-white
-      hover:bg-accent-700 hover:shadow-lg hover:-translate-y-0.5
-      focus:ring-accent-500
+      bg-gradient-to-r from-primary-500 to-primary-400 text-white
+      hover:from-primary-600 hover:to-primary-500 hover:shadow-purple hover:-translate-y-0.5
+      focus:ring-primary-400 focus:ring-offset-2
+      shadow-lg
     `,
     secondary: `
-      bg-white text-neutral-900 border-2 border-neutral-200
-      hover:border-neutral-300 hover:shadow-md hover:-translate-y-0.5
-      focus:ring-neutral-400
+      bg-white text-primary-600 border-2 border-primary-300
+      hover:border-primary-400 hover:bg-primary-50 hover:shadow-md hover:-translate-y-0.5
+      focus:ring-primary-300
     `,
     'secondary-dark': `
-      bg-transparent text-white border-2 border-neutral-700
-      hover:border-neutral-600 hover:bg-neutral-800
-      focus:ring-neutral-600
+      bg-transparent text-white border-2 border-primary-400
+      hover:border-primary-300 hover:bg-primary-900/20
+      focus:ring-primary-400
     `,
     ghost: `
-      bg-transparent text-neutral-600
-      hover:bg-neutral-100 hover:text-neutral-900
-      focus:ring-neutral-400
+      bg-transparent text-neutral-700
+      hover:bg-primary-50 hover:text-primary-600
+      focus:ring-primary-300
     `,
   }
 

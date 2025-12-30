@@ -66,11 +66,11 @@ export function PricingCard({ tier, billing, featured }: PricingCardProps) {
       hover
       className={cn(
         'relative h-full',
-        featured && 'border-2 border-accent-500 shadow-xl'
+        featured && 'border-2 border-primary-500 shadow-purple ring-2 ring-primary-400/20'
       )}
     >
       {featured && (
-        <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-accent-600 text-white text-sm font-medium rounded-full">
+        <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-primary-500 to-primary-400 text-white text-sm font-medium rounded-full shadow-lg">
           Most Popular
         </div>
       )}
