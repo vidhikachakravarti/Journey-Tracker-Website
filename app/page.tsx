@@ -5,7 +5,7 @@ import { ComparisonFlow } from '@/components/home/ComparisonFlow'
 import { TaglineDivider } from '@/components/home/TaglineDivider'
 import { RoleValueProps } from '@/components/home/RoleValueProps'
 import { ImpactMetrics } from '@/components/home/ImpactMetrics'
-import { ProductFlow } from '@/components/home/ProductFlow'
+import { JourneyFlow } from '@/components/home/JourneyFlow'
 import { ScaleStatement } from '@/components/home/ScaleStatement'
 import { CTASection } from '@/components/shared/CTASection'
 
@@ -18,7 +18,7 @@ export default function Home() {
       <TaglineDivider />
       <RoleValueProps />
       <ImpactMetrics />
-      <ProductFlow />
+      <JourneyFlow />
       <ScaleStatement />
       <CTASection />
       <Footer />
