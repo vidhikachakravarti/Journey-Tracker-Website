@@ -1,5 +1,6 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 
@@ -110,123 +111,50 @@ const steps = [
   },
 ]
 
-function FlowCard({ step, isLast }: { step: typeof steps[0]; isLast: boolean }) {
+function FlowStep({ step }: { step: typeof steps[0] }) {
   const ref = useRef(null)
   const isInView = useInView(ref, {
     margin: '-40% 0px -40% 0px',
   })
 
-  return (
-    <div ref={ref} className="relative">
-      {/* Connector Line */}
-      {!isLast && (
-        <div
-          className="absolute left-12 top-full w-0.5 h-24 transition-colors duration-500"
-          style={{
-            backgroundColor: isInView ? '#7848FE' : '#3F3B3A',
-          }}
-        />
-      )}
+  useEffect(() => {
+    if (isInView) {
+      window.dispatchEvent(
+        new CustomEvent('flowStepActive', {
+          detail: { number: step.number, visual: step.visual },
+        })
+      )
+    }
+  }, [isInView, step.number, step.visual])
 
-      {/* Card */}
+  return (
+    <div ref={ref} className="py-24 transition-opacity duration-500">
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-100px' }}
-        transition={{ duration: 0.6 }}
-        className="flex gap-8 items-start"
+        initial={{ opacity: 0.4 }}
+        animate={{ opacity: isInView ? 1 : 0.4 }}
+        className="max-w-[560px]"
       >
-        {/* Step Number Circle */}
-        <div
-          className="flex-shrink-0 w-24 h-24 rounded-full flex items-center justify-center text-2xl font-bold transition-all duration-500"
-          style={{
-            backgroundColor: isInView ? '#7848FE' : '#1a1a1a',
-            color: isInView ? 'white' : '#4B4B4B',
-            border: isInView ? '3px solid #9F7BFF' : '3px solid #3F3B3A',
-            boxShadow: isInView ? '0 0 30px rgba(120, 72, 254, 0.4)' : 'none',
-          }}
-        >
-          {String(step.number).padStart(2, '0')}
+        <div className="text-sm font-mono mb-2 font-semibold" style={{ color: '#D3B9F9' }}>
+          STEP {String(step.number).padStart(2, '0')}
         </div>
 
-        {/* Card Content */}
-        <div
-          className="flex-1 rounded-2xl overflow-hidden transition-all duration-500"
-          style={{
-            backgroundColor: isInView ? '#1a1a1a' : '#0a0a0a',
-            border: isInView ? '2px solid #7848FE' : '2px solid #2a2a2a',
-            opacity: isInView ? 1 : 0.5,
-            transform: isInView ? 'scale(1)' : 'scale(0.98)',
-          }}
-        >
-          {/* Image Section */}
-          <div className="relative h-64 overflow-hidden">
-            <div
-              className="absolute inset-0 bg-cover bg-center transition-all duration-500"
-              style={{
-                backgroundImage: `url(${step.image})`,
-                filter: isInView ? 'grayscale(0%) brightness(1)' : 'grayscale(100%) brightness(0.3)',
-              }}
-            />
-            {/* Purple Overlay */}
-            <div
-              className="absolute inset-0 transition-opacity duration-500"
-              style={{
-                background: 'linear-gradient(135deg, rgba(120, 72, 254, 0.3) 0%, rgba(159, 123, 255, 0.2) 100%)',
-                opacity: isInView ? 1 : 0.3,
-              }}
-            />
-          </div>
+        <h3 className="text-3xl font-semibold text-white mb-2">
+          {step.title}
+        </h3>
 
-          {/* Text Content */}
-          <div className="p-8">
-            <div
-              className="text-sm font-mono mb-3 font-semibold transition-colors duration-500"
-              style={{ color: isInView ? '#D3B9F9' : '#4B4B4B' }}
-            >
-              STEP {String(step.number).padStart(2, '0')}
+        <p className="text-lg italic mb-6" style={{ color: '#EADEFC' }}>{step.tagline}</p>
+
+        <p className="text-base leading-relaxed mb-8" style={{ color: '#F9EAE4' }}>
+          {step.description}
+        </p>
+
+        <div className="space-y-2">
+          {step.impact.map((item, i) => (
+            <div key={i} className="flex items-start gap-3">
+              <span className="mt-1" style={{ color: '#9F7BFF' }}>✔</span>
+              <span style={{ color: '#FFD2BB' }}>{item}</span>
             </div>
-
-            <h3
-              className="text-3xl font-semibold mb-3 transition-colors duration-500"
-              style={{ color: isInView ? 'white' : '#6B6B6B' }}
-            >
-              {step.title}
-            </h3>
-
-            <p
-              className="text-lg italic mb-6 transition-colors duration-500"
-              style={{ color: isInView ? '#EADEFC' : '#4B4B4B' }}
-            >
-              {step.tagline}
-            </p>
-
-            <p
-              className="text-base leading-relaxed mb-8 transition-colors duration-500"
-              style={{ color: isInView ? '#F9EAE4' : '#4B4B4B' }}
-            >
-              {step.description}
-            </p>
-
-            <div className="space-y-3">
-              {step.impact.map((item, i) => (
-                <div key={i} className="flex items-start gap-3">
-                  <span
-                    className="mt-1 transition-colors duration-500"
-                    style={{ color: isInView ? '#9F7BFF' : '#3F3B3A' }}
-                  >
-                    ✔
-                  </span>
-                  <span
-                    className="transition-colors duration-500"
-                    style={{ color: isInView ? '#FFD2BB' : '#4B4B4B' }}
-                  >
-                    {item}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
+          ))}
         </div>
       </motion.div>
     </div>
@@ -234,28 +162,72 @@ function FlowCard({ step, isLast }: { step: typeof steps[0]; isLast: boolean }) 
 }
 
 export function ProductFlow() {
+  const [activeVisual, setActiveVisual] = useState(steps[0].visual)
+
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const customEvent = e as CustomEvent
+      setActiveVisual(customEvent.detail.visual)
+    }
+
+    window.addEventListener('flowStepActive', handler)
+    return () => window.removeEventListener('flowStepActive', handler)
+  }, [])
+
+  // Find the step with the active visual to get the correct image
+  const activeStep = steps.find(s => s.visual === activeVisual) || steps[0]
+
   return (
     <section className="relative text-white py-32" style={{ backgroundColor: '#000000' }}>
-      <div className="max-w-[1200px] mx-auto px-6">
-        {/* Section Header */}
+      <div className="max-w-[1440px] mx-auto px-6">
+        {/* Section intro */}
         <div className="text-center mb-24">
           <h2 className="text-5xl font-bold tracking-tight mb-6 text-white">
             From program design to measurable clinical impact
           </h2>
           <p className="text-xl max-w-3xl mx-auto" style={{ color: '#EADEFC' }}>
-            A single system that takes you from care planning → daily execution → patient outcomes → population-level insights.
+            A single system that takes you from care planning → daily execution
+            → patient outcomes → population-level insights.
           </p>
         </div>
 
-        {/* Vertical Flow Diagram */}
-        <div className="space-y-24">
-          {steps.map((step, index) => (
-            <FlowCard
-              key={step.number}
-              step={step}
-              isLast={index === steps.length - 1}
-            />
-          ))}
+        {/* Scroll flow */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-24">
+          {/* Sticky Visual */}
+          <div className="hidden lg:block">
+            <div className="sticky top-32 h-[600px]">
+              <div className="relative w-full h-full rounded-lg border overflow-hidden shadow-2xl" style={{ borderColor: '#9F7BFF' }}>
+                {/* Background image based on active visual */}
+                <motion.div
+                  key={activeVisual}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5 }}
+                  className="absolute inset-0"
+                >
+                  <div
+                    className="absolute inset-0 bg-cover bg-center"
+                    style={{ backgroundImage: `url(${activeStep.image})` }}
+                  />
+                  {/* Purple overlay for brand consistency */}
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      background: 'linear-gradient(135deg, rgba(159, 123, 255, 0.5) 0%, rgba(120, 72, 254, 0.4) 100%)'
+                    }}
+                  />
+                </motion.div>
+
+              </div>
+            </div>
+          </div>
+
+          {/* Scrolling Content */}
+          <div>
+            {steps.map((step) => (
+              <FlowStep key={step.number} step={step} />
+            ))}
+          </div>
         </div>
       </div>
     </section>
