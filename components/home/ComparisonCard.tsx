@@ -3,10 +3,12 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
+import Image from 'next/image'
 import { cn } from '@/lib/utils'
 
 interface ComparisonCardProps {
   image: string
+  imageUrl?: string
   imagePosition: 'left' | 'right'
   theme: 'problem' | 'solution'
   children: React.ReactNode
@@ -14,6 +16,7 @@ interface ComparisonCardProps {
 
 export function ComparisonCard({
   image,
+  imageUrl,
   imagePosition,
   theme,
   children,
@@ -37,31 +40,61 @@ export function ComparisonCard({
         className={cn('relative', isReversed && 'md:order-2')}
       >
         <div
-          className="rounded-lg overflow-hidden border shadow-2xl aspect-video flex items-center justify-center p-8 relative"
-          style={theme === 'solution'
-            ? { borderColor: '#9F7BFF', background: 'linear-gradient(135deg, #EADEFC 0%, #D3B9F9 100%)' }
-            : { borderColor: '#DCDBDD', background: 'linear-gradient(135deg, #F4F4F4 0%, #DCDBDD 100%)' }
-          }
+          className="rounded-lg overflow-hidden border shadow-2xl aspect-video relative"
+          style={{ borderColor: theme === 'solution' ? '#9F7BFF' : '#DCDBDD' }}
         >
-          {/* Placeholder pattern */}
-          <div className="absolute inset-0 opacity-10" style={{
-            backgroundImage: theme === 'solution'
-              ? 'radial-gradient(circle at 20% 50%, #7848FE 0%, transparent 50%), radial-gradient(circle at 80% 50%, #9F7BFF 0%, transparent 50%)'
-              : 'radial-gradient(circle at 20% 50%, #959593 0%, transparent 50%), radial-gradient(circle at 80% 50%, #817E77 0%, transparent 50%)'
-          }} />
-
-          <div className="relative z-10 text-center">
-            <div
-              className="text-lg font-semibold mb-2"
-              style={{ color: theme === 'solution' ? '#7848FE' : '#817E77' }}
-            >
-              {theme === 'solution' ? '📊' : '⚠️'}
-            </div>
-            <div
-              className="text-sm font-medium leading-relaxed"
-              style={{ color: theme === 'solution' ? '#280470' : '#3F3B3A' }}
-            >{image}</div>
-          </div>
+          {imageUrl ? (
+            <>
+              {/* Actual Image */}
+              <Image
+                src={imageUrl}
+                alt={image}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+              {/* Brand-colored overlay */}
+              <div
+                className="absolute inset-0"
+                style={{
+                  background: theme === 'solution'
+                    ? 'linear-gradient(135deg, rgba(159, 123, 255, 0.4) 0%, rgba(120, 72, 254, 0.3) 100%)'
+                    : 'linear-gradient(135deg, rgba(63, 59, 58, 0.3) 0%, rgba(129, 126, 119, 0.2) 100%)'
+                }}
+              />
+            </>
+          ) : (
+            <>
+              {/* Fallback gradient background */}
+              <div
+                className="absolute inset-0"
+                style={theme === 'solution'
+                  ? { background: 'linear-gradient(135deg, #EADEFC 0%, #D3B9F9 100%)' }
+                  : { background: 'linear-gradient(135deg, #F4F4F4 0%, #DCDBDD 100%)' }
+                }
+              />
+              {/* Placeholder pattern */}
+              <div className="absolute inset-0 opacity-10" style={{
+                backgroundImage: theme === 'solution'
+                  ? 'radial-gradient(circle at 20% 50%, #7848FE 0%, transparent 50%), radial-gradient(circle at 80% 50%, #9F7BFF 0%, transparent 50%)'
+                  : 'radial-gradient(circle at 20% 50%, #959593 0%, transparent 50%), radial-gradient(circle at 80% 50%, #817E77 0%, transparent 50%)'
+              }} />
+              <div className="absolute inset-0 flex items-center justify-center p-8">
+                <div className="relative z-10 text-center">
+                  <div
+                    className="text-lg font-semibold mb-2"
+                    style={{ color: theme === 'solution' ? '#7848FE' : '#817E77' }}
+                  >
+                    {theme === 'solution' ? '📊' : '⚠️'}
+                  </div>
+                  <div
+                    className="text-sm font-medium leading-relaxed"
+                    style={{ color: theme === 'solution' ? '#280470' : '#3F3B3A' }}
+                  >{image}</div>
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </motion.div>
 

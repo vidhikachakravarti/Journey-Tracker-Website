@@ -188,31 +188,93 @@ export function ProductFlow() {
           {/* Sticky Visual */}
           <div className="hidden lg:block">
             <div className="sticky top-32 h-[600px]">
-              <div className="relative w-full h-full rounded-lg border flex items-center justify-center overflow-hidden shadow-2xl" style={{ borderColor: '#9F7BFF', background: 'linear-gradient(135deg, #D3B9F9 0%, #EADEFC 100%)' }}>
-                {/* Decorative pattern */}
-                <div className="absolute inset-0 opacity-20" style={{
-                  backgroundImage: 'radial-gradient(circle at 30% 30%, #7848FE 0%, transparent 40%), radial-gradient(circle at 70% 70%, #9F7BFF 0%, transparent 40%)'
-                }} />
-
-                {/* Grid pattern */}
-                <div className="absolute inset-0 opacity-5" style={{
-                  backgroundImage: 'linear-gradient(#280470 1px, transparent 1px), linear-gradient(90deg, #280470 1px, transparent 1px)',
-                  backgroundSize: '40px 40px'
-                }} />
-
+              <div className="relative w-full h-full rounded-lg border overflow-hidden shadow-2xl" style={{ borderColor: '#9F7BFF' }}>
+                {/* Background image based on active visual */}
                 <motion.div
                   key={activeVisual}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
                   transition={{ duration: 0.5 }}
-                  className="text-center p-12 relative z-10"
+                  className="absolute inset-0"
                 >
-                  <div className="text-6xl mb-4">🎯</div>
+                  {activeVisual.includes('Dashboard') && (
+                    <div
+                      className="absolute inset-0 bg-cover bg-center"
+                      style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80)' }}
+                    />
+                  )}
+                  {activeVisual.includes('Interface') && (
+                    <div
+                      className="absolute inset-0 bg-cover bg-center"
+                      style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=1200&q=80)' }}
+                    />
+                  )}
+                  {activeVisual.includes('Deployment') && (
+                    <div
+                      className="absolute inset-0 bg-cover bg-center"
+                      style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&q=80)' }}
+                    />
+                  )}
+                  {activeVisual.includes('Assignment') && (
+                    <div
+                      className="absolute inset-0 bg-cover bg-center"
+                      style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=1200&q=80)' }}
+                    />
+                  )}
+                  {activeVisual.includes('Daily Task') && (
+                    <div
+                      className="absolute inset-0 bg-cover bg-center"
+                      style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=1200&q=80)' }}
+                    />
+                  )}
+                  {activeVisual.includes('Collaboration') && (
+                    <div
+                      className="absolute inset-0 bg-cover bg-center"
+                      style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&q=80)' }}
+                    />
+                  )}
+                  {activeVisual.includes('Monitoring') && (
+                    <div
+                      className="absolute inset-0 bg-cover bg-center"
+                      style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80)' }}
+                    />
+                  )}
+                  {activeVisual.includes('Impact') && (
+                    <div
+                      className="absolute inset-0 bg-cover bg-center"
+                      style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&q=80)' }}
+                    />
+                  )}
+                  {activeVisual.includes('Analytics') && (
+                    <div
+                      className="absolute inset-0 bg-cover bg-center"
+                      style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80)' }}
+                    />
+                  )}
+                  {/* Purple overlay for brand consistency */}
                   <div
-                    className="text-base font-semibold leading-relaxed"
-                    style={{ color: '#280470' }}
-                  >{activeVisual}</div>
+                    className="absolute inset-0"
+                    style={{
+                      background: 'linear-gradient(135deg, rgba(159, 123, 255, 0.5) 0%, rgba(120, 72, 254, 0.4) 100%)'
+                    }}
+                  />
                 </motion.div>
+
+                {/* Content overlay */}
+                <div className="absolute inset-0 flex items-center justify-center p-12">
+                  <motion.div
+                    key={activeVisual}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5 }}
+                    className="text-center relative z-10"
+                  >
+                    <div
+                      className="text-base font-semibold leading-relaxed bg-white/90 backdrop-blur-sm px-6 py-3 rounded-lg"
+                      style={{ color: '#280470' }}
+                    >{activeVisual}</div>
+                  </motion.div>
+                </div>
               </div>
             </div>
           </div>

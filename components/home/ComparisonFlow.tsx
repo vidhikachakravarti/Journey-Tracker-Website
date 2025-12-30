@@ -16,6 +16,7 @@ export function ComparisonFlow() {
         {/* Problem State 1 */}
         <ComparisonCard
           image="Care teams looking confused/distressed"
+          imageUrl="https://images.unsplash.com/photo-1584515933487-779824d29309?w=800&q=80"
           imagePosition="left"
           theme="problem"
         >
@@ -36,6 +37,7 @@ export function ComparisonFlow() {
         {/* Problem State 2 */}
         <ComparisonCard
           image="Calendar with multiple updates"
+          imageUrl="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80"
           imagePosition="right"
           theme="problem"
         >
@@ -54,6 +56,7 @@ export function ComparisonFlow() {
         {/* Solution State 1 */}
         <ComparisonCard
           image="Journey Tracker Dashboard"
+          imageUrl="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80"
           imagePosition="left"
           theme="solution"
         >
@@ -70,6 +73,7 @@ export function ComparisonFlow() {
         {/* Solution State 2 */}
         <ComparisonCard
           image="Journey Tracker My Tasks"
+          imageUrl="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"
           imagePosition="right"
           theme="solution"
         >
