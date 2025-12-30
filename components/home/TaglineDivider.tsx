@@ -122,7 +122,7 @@ export function TaglineDivider() {
             {/* Headline with word-by-word animation */}
             <div className="text-center">
               <motion.h2 className="text-[44px] leading-[52px] font-semibold tracking-tight">
-                {['Journey', 'Tracker', 'turns', 'care', 'programs', 'into'].map((word, i) => (
+                {['Journey', 'Tracker', 'turns'].map((word, i) => (
                   <motion.span
                     key={i}
                     initial={{ opacity: 0, y: 20 }}
@@ -130,6 +130,23 @@ export function TaglineDivider() {
                     transition={{
                       duration: 0.5,
                       delay: 0.1 + i * 0.08,
+                      ease: [0.16, 1, 0.3, 1]
+                    }}
+                    className="inline-block mr-3"
+                    style={{ color: '#000000' }}
+                  >
+                    {word}
+                  </motion.span>
+                ))}
+                <br />
+                {['care', 'programs', 'into'].map((word, i) => (
+                  <motion.span
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{
+                      duration: 0.5,
+                      delay: 0.35 + i * 0.08,
                       ease: [0.16, 1, 0.3, 1]
                     }}
                     className="inline-block mr-3"
