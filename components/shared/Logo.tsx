@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { cn } from '@/lib/utils'
 
 interface LogoProps {
@@ -9,14 +10,14 @@ interface LogoProps {
 export function Logo({ variant = 'dark', className }: LogoProps) {
   return (
     <Link href="/" className={cn('flex items-center', className)}>
-      <span
-        className={cn(
-          'text-2xl font-bold tracking-tight',
-          variant === 'dark' ? 'text-neutral-900' : 'text-white'
-        )}
-      >
-        Lillia
-      </span>
+      <Image
+        src="/lillia-logo.png"
+        alt="Lillia"
+        width={120}
+        height={40}
+        priority
+        className="h-8 w-auto"
+      />
     </Link>
   )
 }
