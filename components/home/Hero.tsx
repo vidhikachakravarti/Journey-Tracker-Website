@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 
 export function Hero() {
   return (
-    <section className="relative pt-32 pb-32 bg-white">
+    <section className="relative pt-32 pb-32" style={{ background: 'linear-gradient(135deg, #F9EAE4 0%, #EADEFC 50%, #D3B9F9 100%)' }}>
       <div className="max-w-[1120px] mx-auto px-6 text-center">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}

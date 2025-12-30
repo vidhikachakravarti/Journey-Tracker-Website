@@ -11,7 +11,7 @@ import {
 
 export function ComparisonFlow() {
   return (
-    <section className="relative bg-white py-32">
+    <section className="relative py-32" style={{ background: 'linear-gradient(180deg, #FFFFFF 0%, #F9EAE4 50%, #EADEFC 100%)' }}>
       <div className="max-w-content mx-auto px-6">
         {/* Problem State 1 */}
         <ComparisonCard

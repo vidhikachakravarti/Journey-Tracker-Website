@@ -44,7 +44,7 @@ const solutions = [
 
 export default function SolutionsPage() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen" style={{ background: 'linear-gradient(180deg, #EADEFC 0%, #F9EAE4 50%, #D3B9F9 100%)' }}>
       <Header />
 
       <section className="py-20">

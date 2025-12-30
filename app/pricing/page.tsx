@@ -12,11 +12,11 @@ export default function PricingPage() {
   const [billing, setBilling] = useState<'monthly' | 'annual'>('monthly')
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen" style={{ background: 'linear-gradient(180deg, #F9EAE4 0%, #EADEFC 50%, #D3B9F9 100%)' }}>
       <Header />
 
       {/* Hero */}
-      <section className="relative pt-20 pb-16 bg-gradient-to-b from-neutral-0 to-neutral-50">
+      <section className="relative pt-20 pb-16">
         <div className="max-w-[768px] mx-auto px-6 text-center">
           <div className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium mb-4" style={{ backgroundColor: '#EADEFC', color: '#7848FE' }}>
             Pricing
@@ -33,7 +33,7 @@ export default function PricingPage() {
       </section>
 
       {/* Billing Toggle */}
-      <section className="relative py-8 bg-white">
+      <section className="relative py-8">
         <div className="flex items-center justify-center gap-4">
           <button
             onClick={() => setBilling('monthly')}
@@ -76,7 +76,7 @@ export default function PricingPage() {
       </section>
 
       {/* Pricing Tiers */}
-      <section className="relative py-16 bg-white">
+      <section className="relative py-16">
         <div className="max-w-content mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <PricingCard tier="starter" billing={billing} />

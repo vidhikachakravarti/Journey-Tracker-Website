@@ -44,7 +44,7 @@ export function RoleValueProps() {
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section ref={ref} className="relative py-32 bg-white">
+    <section ref={ref} className="relative py-32" style={{ background: 'linear-gradient(180deg, #EADEFC 0%, #FFFFFF 50%, #F9EAE4 100%)' }}>
       <div className="max-w-content mx-auto px-6">
         <SectionHeader>
           <h2 className="text-4xl font-semibold tracking-tight text-neutral-900 mb-4">

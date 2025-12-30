@@ -20,7 +20,8 @@ export function ImpactMetrics() {
   return (
     <section
       ref={ref}
-      className="relative py-24 bg-gradient-to-b from-neutral-50 to-neutral-100"
+      className="relative py-24"
+      style={{ background: 'linear-gradient(180deg, #F9EAE4 0%, #FFD2BB 50%, #EADEFC 100%)' }}
     >
       <div className="max-w-[1120px] mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

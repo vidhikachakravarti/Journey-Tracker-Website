@@ -37,16 +37,31 @@ export function ComparisonCard({
         className={cn('relative', isReversed && 'md:order-2')}
       >
         <div
-          className="rounded-lg overflow-hidden border shadow-2xl aspect-video flex items-center justify-center"
+          className="rounded-lg overflow-hidden border shadow-2xl aspect-video flex items-center justify-center p-8 relative"
           style={theme === 'solution'
             ? { borderColor: '#9F7BFF', background: 'linear-gradient(135deg, #EADEFC 0%, #D3B9F9 100%)' }
-            : { borderColor: '#DCDBDD', backgroundColor: '#F4F4F4' }
+            : { borderColor: '#DCDBDD', background: 'linear-gradient(135deg, #F4F4F4 0%, #DCDBDD 100%)' }
           }
         >
-          <div
-            className="text-sm font-medium"
-            style={{ color: theme === 'solution' ? '#7848FE' : '#959593' }}
-          >[{image}]</div>
+          {/* Placeholder pattern */}
+          <div className="absolute inset-0 opacity-10" style={{
+            backgroundImage: theme === 'solution'
+              ? 'radial-gradient(circle at 20% 50%, #7848FE 0%, transparent 50%), radial-gradient(circle at 80% 50%, #9F7BFF 0%, transparent 50%)'
+              : 'radial-gradient(circle at 20% 50%, #959593 0%, transparent 50%), radial-gradient(circle at 80% 50%, #817E77 0%, transparent 50%)'
+          }} />
+
+          <div className="relative z-10 text-center">
+            <div
+              className="text-lg font-semibold mb-2"
+              style={{ color: theme === 'solution' ? '#7848FE' : '#817E77' }}
+            >
+              {theme === 'solution' ? '📊' : '⚠️'}
+            </div>
+            <div
+              className="text-sm font-medium leading-relaxed"
+              style={{ color: theme === 'solution' ? '#280470' : '#3F3B3A' }}
+            >{image}</div>
+          </div>
         </div>
       </motion.div>
 

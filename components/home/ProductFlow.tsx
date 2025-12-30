@@ -189,15 +189,29 @@ export function ProductFlow() {
           <div className="hidden lg:block">
             <div className="sticky top-32 h-[600px]">
               <div className="relative w-full h-full rounded-lg border flex items-center justify-center overflow-hidden shadow-2xl" style={{ borderColor: '#9F7BFF', background: 'linear-gradient(135deg, #D3B9F9 0%, #EADEFC 100%)' }}>
+                {/* Decorative pattern */}
+                <div className="absolute inset-0 opacity-20" style={{
+                  backgroundImage: 'radial-gradient(circle at 30% 30%, #7848FE 0%, transparent 40%), radial-gradient(circle at 70% 70%, #9F7BFF 0%, transparent 40%)'
+                }} />
+
+                {/* Grid pattern */}
+                <div className="absolute inset-0 opacity-5" style={{
+                  backgroundImage: 'linear-gradient(#280470 1px, transparent 1px), linear-gradient(90deg, #280470 1px, transparent 1px)',
+                  backgroundSize: '40px 40px'
+                }} />
+
                 <motion.div
                   key={activeVisual}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5 }}
-                  className="text-sm text-center p-8 relative z-10 font-medium"
-                  style={{ color: '#280470' }}
+                  className="text-center p-12 relative z-10"
                 >
-                  [{activeVisual}]
+                  <div className="text-6xl mb-4">🎯</div>
+                  <div
+                    className="text-base font-semibold leading-relaxed"
+                    style={{ color: '#280470' }}
+                  >{activeVisual}</div>
                 </motion.div>
               </div>
             </div>

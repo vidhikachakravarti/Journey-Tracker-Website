@@ -20,7 +20,7 @@ const industries = [
 
 export default function ClientsPage() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen" style={{ background: 'linear-gradient(180deg, #D3B9F9 0%, #EADEFC 50%, #F9EAE4 100%)' }}>
       <Header />
 
       <section className="py-20">
@@ -32,9 +32,13 @@ export default function ClientsPage() {
             {[1, 2, 3, 4, 5, 6].map((i) => (
               <div
                 key={i}
-                className="aspect-video bg-neutral-100 rounded-lg flex items-center justify-center border border-neutral-200 opacity-60 hover:opacity-100 transition-opacity"
+                className="aspect-video rounded-lg flex items-center justify-center border opacity-80 hover:opacity-100 transition-opacity"
+                style={{
+                  background: 'linear-gradient(135deg, #EADEFC 0%, #D3B9F9 100%)',
+                  borderColor: '#9F7BFF'
+                }}
               >
-                <span className="text-neutral-400 text-xs">Logo {i}</span>
+                <span className="text-sm font-medium" style={{ color: '#7848FE' }}>Logo {i}</span>
               </div>
             ))}
           </div>
