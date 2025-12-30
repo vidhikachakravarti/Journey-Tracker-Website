@@ -2,8 +2,8 @@
 
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
-import { useRef } from 'react'
-import { Card } from '../ui/Card'
+import { useRef, useState } from 'react'
+import Image from 'next/image'
 import { SectionHeader } from '../ui/SectionHeader'
 
 const roles = [
@@ -16,6 +16,7 @@ const roles = [
       'Monitor execution across all assigned patients',
     ],
     outcome: 'Clear oversight. Faster course correction. Fewer fire drills.',
+    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80',
   },
   {
     title: 'For Care Experts',
@@ -26,6 +27,7 @@ const roles = [
       'Clear context on where each patient is in their journey',
     ],
     outcome: 'Consistency at scale. Without burnout.',
+    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80',
   },
   {
     title: 'For Physicians',
@@ -36,8 +38,114 @@ const roles = [
       'Assurance that care protocols are followed consistently',
     ],
     outcome: 'Clinical intent translates into real-world action.',
+    image: 'https://images.unsplash.com/photo-1666214280557-f1b5022eb634?w=800&q=80',
   },
 ]
+
+function RoleCard({ role, index, isInView }: { role: typeof roles[0], index: number, isInView: boolean }) {
+  const [isHovered, setIsHovered] = useState(false)
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="relative h-[400px] rounded-2xl overflow-hidden cursor-pointer group"
+    >
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <Image
+          src={role.image}
+          alt={role.title}
+          fill
+          className="object-cover transition-transform duration-700 group-hover:scale-110"
+          sizes="(max-width: 768px) 100vw, 33vw"
+        />
+        {/* Purple tint overlay */}
+        <motion.div
+          className="absolute inset-0"
+          animate={{
+            background: isHovered
+              ? 'linear-gradient(135deg, rgba(120, 72, 254, 0.95) 0%, rgba(159, 123, 255, 0.95) 100%)'
+              : 'linear-gradient(135deg, rgba(120, 72, 254, 0.6) 0%, rgba(159, 123, 255, 0.5) 100%)'
+          }}
+          transition={{ duration: 0.4 }}
+        />
+      </div>
+
+      {/* Content */}
+      <div className="relative h-full flex flex-col justify-between p-8">
+        {/* Title - Always Visible */}
+        <motion.div
+          animate={{
+            y: isHovered ? 0 : '50%',
+          }}
+          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          className="absolute top-1/2 left-8 right-8"
+        >
+          <h3 className="text-2xl font-bold text-white text-center">
+            {role.title}
+          </h3>
+        </motion.div>
+
+        {/* Details - Visible on Hover */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{
+            opacity: isHovered ? 1 : 0,
+            y: isHovered ? 0 : 20,
+          }}
+          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col justify-center h-full space-y-4 pointer-events-none"
+        >
+          <p className="text-lg font-semibold text-white/95">
+            {role.valueProp}
+          </p>
+
+          <ul className="space-y-2">
+            {role.features.map((feature, i) => (
+              <motion.li
+                key={i}
+                initial={{ opacity: 0, x: -10 }}
+                animate={{
+                  opacity: isHovered ? 1 : 0,
+                  x: isHovered ? 0 : -10,
+                }}
+                transition={{
+                  duration: 0.3,
+                  delay: isHovered ? 0.1 + i * 0.05 : 0,
+                }}
+                className="text-sm text-white/90 flex items-start gap-2"
+              >
+                <span className="text-white/70">•</span>
+                <span>{feature}</span>
+              </motion.li>
+            ))}
+          </ul>
+
+          <div className="pt-4 mt-4 border-t border-white/30">
+            <p className="text-base italic font-medium text-white">
+              {role.outcome}
+            </p>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Hover border glow */}
+      <motion.div
+        className="absolute inset-0 rounded-2xl pointer-events-none"
+        animate={{
+          boxShadow: isHovered
+            ? '0 0 0 2px rgba(159, 123, 255, 0.8), 0 20px 40px rgba(120, 72, 254, 0.4)'
+            : '0 0 0 1px rgba(220, 219, 221, 0.3)',
+        }}
+        transition={{ duration: 0.3 }}
+      />
+    </motion.div>
+  )
+}
 
 export function RoleValueProps() {
   const ref = useRef(null)
@@ -54,36 +162,7 @@ export function RoleValueProps() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
           {roles.map((role, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <Card theme="bordered" padding="large" hover>
-                <div className="space-y-6">
-                  <h3 className="text-xl font-semibold text-neutral-900">
-                    {role.title}
-                  </h3>
-
-                  <p className="text-lg font-semibold text-neutral-900">
-                    {role.valueProp}
-                  </p>
-
-                  <ul className="space-y-2 text-neutral-700">
-                    {role.features.map((feature, i) => (
-                      <li key={i}>• {feature}</li>
-                    ))}
-                  </ul>
-
-                  <div className="pt-4 mt-4 border-t border-neutral-200">
-                    <p className="text-base italic font-medium" style={{ color: '#280470' }}>
-                      {role.outcome}
-                    </p>
-                  </div>
-                </div>
-              </Card>
-            </motion.div>
+            <RoleCard key={index} role={role} index={index} isInView={isInView} />
           ))}
         </div>
       </div>
